@@ -30,6 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BASE_PATH: "/${{ github.event.repository.name }}"
+      OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+      VOICEVOX_KEY: ${{ secrets.VOICEVOX_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
