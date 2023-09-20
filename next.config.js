@@ -10,6 +10,7 @@ const nextConfig = {
   optimizeFonts: false,
   env: {
     openAiKey: process.env.OPENAI_KEY,
+    voicevoxKey: process.env.VOICEVOX_KEY,
   },
 };
 

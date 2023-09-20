@@ -19,6 +19,7 @@ export default function Home() {
 
   const [systemPrompt, setSystemPrompt] = useState(SYSTEM_PROMPT);
   const [openAiKey, setOpenAiKey] = useState(process.env.openAiKey || "");
+  const [voicevoxKey, setVoicevoxKey] = useState(process.env.voicevoxKey || "");
   const [koeiromapKey, setKoeiromapKey] = useState("");
   const [koeiroParam, setKoeiroParam] = useState<KoeiroParam>(DEFAULT_PARAM);
   const [chatProcessing, setChatProcessing] = useState(false);
@@ -65,9 +66,9 @@ export default function Home() {
       onStart?: () => void,
       onEnd?: () => void
     ) => {
-      speakCharacter(screenplay, viewer, koeiromapKey, onStart, onEnd);
+      speakCharacter(screenplay, viewer, voicevoxKey, onStart, onEnd);
     },
-    [viewer, koeiromapKey]
+    [viewer, voicevoxKey]
   );
 
   /**
