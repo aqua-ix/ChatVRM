@@ -8,6 +8,9 @@ const nextConfig = {
     root: process.env.BASE_PATH || "",
   },
   optimizeFonts: false,
+  env: {
+    openAiKey: process.env.OPENAI_KEY,
+  },
 };
 
 module.exports = nextConfig;
