@@ -29,7 +29,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      BASE_PATH: "/${{ github.event.repository.name }}"
+      BASE_PATH: "/"
       OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
       VOICEVOX_KEY: ${{ secrets.VOICEVOX_KEY }}
     steps:
