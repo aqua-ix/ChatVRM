@@ -102,12 +102,6 @@ export const Menu = ({
     <>
       <div className="absolute z-10 m-24">
         <div className="grid grid-flow-col gap-[8px]">
-          <IconButton
-            iconName="24/Menu"
-            label="設定"
-            isProcessing={false}
-            onClick={() => setShowSettings(true)}
-          ></IconButton>
           {showChatLog ? (
             <IconButton
               iconName="24/CommentOutline"
@@ -127,34 +121,9 @@ export const Menu = ({
         </div>
       </div>
       {showChatLog && <ChatLog messages={chatLog} />}
-      {showSettings && (
-        <Settings
-          openAiKey={openAiKey}
-          chatLog={chatLog}
-          systemPrompt={systemPrompt}
-          koeiroParam={koeiroParam}
-          koeiromapKey={koeiromapKey}
-          onClickClose={() => setShowSettings(false)}
-          onChangeAiKey={handleAiKeyChange}
-          onChangeSystemPrompt={handleChangeSystemPrompt}
-          onChangeChatLog={onChangeChatLog}
-          onChangeKoeiroParam={handleChangeKoeiroParam}
-          onClickOpenVrmFile={handleClickOpenVrmFile}
-          onClickResetChatLog={handleClickResetChatLog}
-          onClickResetSystemPrompt={handleClickResetSystemPrompt}
-          onChangeKoeiromapKey={handleChangeKoeiromapKey}
-        />
-      )}
-      {!showChatLog && assistantMessage && (
-        <AssistantText message={assistantMessage} />
-      )}
-      <input
-        type="file"
-        className="hidden"
-        accept=".vrm"
-        ref={fileInputRef}
-        onChange={handleChangeVrmFile}
-      />
+       {!showChatLog && assistantMessage && (
+         <AssistantText message={assistantMessage} />
+       )}
     </>
   );
 };
