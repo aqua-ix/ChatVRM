@@ -9,7 +9,7 @@ export default function VrmViewer() {
     (canvas: HTMLCanvasElement) => {
       if (canvas) {
         viewer.setup(canvas);
-        viewer.loadVrm(buildUrl("/Zundamon.vrm"));
+        viewer.loadVrm(buildUrl("./Zundamon.vrm"));
 
         // Drag and DropでVRMを差し替え
         canvas.addEventListener("dragover", function (event) {
