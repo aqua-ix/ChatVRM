@@ -118,6 +118,18 @@ export const Menu = ({
               onClick={() => setShowChatLog(true)}
             />
           )}
+          {showChatLog && (
+            <IconButton
+            iconName="24/ItemRemove"
+            label="リセット"
+            isProcessing={false}
+            disabled={chatLog.length <= 0}
+            onClick={() => {
+              handleClickResetChatLog()
+              setShowChatLog(false)
+            }}
+          />
+          )}
         </div>
       </div>
       {showChatLog && <ChatLog messages={chatLog} />}
