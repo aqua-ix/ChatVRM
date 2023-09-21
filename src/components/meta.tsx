@@ -1,9 +1,9 @@
 import { buildUrl } from "@/utils/buildUrl";
 import Head from "next/head";
 export const Meta = () => {
-  const title = "ずんだBOT";
+  const title = "ずんだもんBOT";
   const description =
-    "ずんだもんとチャットできるWebアプリです。";
+    "ずんだもんと話せるWebアプリケーション";
   const imageUrl = "https://aqua-ix.github.io/ChatVRM/ogp.png";
   return (
     <Head>
