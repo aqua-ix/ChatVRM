@@ -7,7 +7,7 @@ name: Deploy Next.js site to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["old/gh-pages"]
+    branches: ["zundabot"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,7 +29,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      BASE_PATH: "/${{ github.event.repository.name }}"
+      BASE_PATH: "/"
+      OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+      VOICEVOX_KEY: ${{ secrets.VOICEVOX_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3

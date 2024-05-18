@@ -12,6 +12,28 @@ export async function synthesizeVoice(
   return { audio: koeiroRes.audio };
 }
 
+export async function synthesizeVoicevox(
+  message: string,
+  apiKey: string,
+) {
+  const endpointUrl = "https://deprecatedapis.tts.quest/v2/voicevox/audio/";
+
+  const query_params = {
+    key: apiKey,
+    text: message,
+    speaker: "3",
+  }
+
+  const query = new URLSearchParams(query_params);
+
+  const voicevoxResponse = await fetch(
+    `${endpointUrl}?${query}`,
+    { method: "POST" },
+  );
+
+  return { audio: await voicevoxResponse.blob() };
+}
+
 export async function synthesizeVoiceApi(
   message: string,
   speakerX: number,
