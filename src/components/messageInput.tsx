@@ -49,7 +49,7 @@ export const MessageInput = ({
           </div>
         </div>
         <div className="py-4 bg-[#413D43] text-center text-white font-Montserrat">
-          © AQUA, Powered by GPT-3.5, VOICEVOX: ずんだもん
+          Powered by GPT-3.5, VOICEVOX: ずんだもん
         </div>
       </div>
     </div>
