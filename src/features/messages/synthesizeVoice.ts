@@ -21,7 +21,7 @@ export async function synthesizeVoicevox(
   const query_params = {
     key: apiKey,
     text: message,
-    speaker: "2",
+    speaker: "3",
   }
 
   const query = new URLSearchParams(query_params);
