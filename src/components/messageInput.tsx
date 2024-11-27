@@ -76,13 +76,7 @@ export const MessageInput = ({
           </button>
           {!isCollapsed && (
             <div className="mt-2">
-              Hatsune Miku, © Crypton Future Media, Inc. 2007, licensed under a{" "}
-              <a
-                href="https://creativecommons.org/licenses/by-nc/3.0/"
-                className="text-blue-400 hover:text-blue-300 underline transition-colors duration-200"
-              >
-                CC BY-NC.
-              </a>
+              Hatsune Miku, © Crypton Future Media, Inc. 2007, licensed under a CC BY-NC.
             </div>
           )}
         </div>
