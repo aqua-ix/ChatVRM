@@ -100,42 +100,10 @@ export const Menu = ({
 
   return (
     <>
-      <div className="absolute z-10 m-24">
-        <div className="grid grid-flow-col gap-[8px]">
-          {showChatLog ? (
-            <IconButton
-              iconName="24/CommentOutline"
-              label="会話ログ"
-              isProcessing={false}
-              onClick={() => setShowChatLog(false)}
-            />
-          ) : (
-            <IconButton
-              iconName="24/CommentFill"
-              label="会話ログ"
-              isProcessing={false}
-              disabled={chatLog.length <= 0}
-              onClick={() => setShowChatLog(true)}
-            />
-          )}
-          {showChatLog && (
-            <IconButton
-            iconName="24/ItemRemove"
-            label="リセット"
-            isProcessing={false}
-            disabled={chatLog.length <= 0}
-            onClick={() => {
-              handleClickResetChatLog()
-              setShowChatLog(false)
-            }}
-          />
-          )}
-        </div>
-      </div>
       {showChatLog && <ChatLog messages={chatLog} />}
-       {!showChatLog && assistantMessage && (
-         <AssistantText message={assistantMessage} />
-       )}
+      {!showChatLog && assistantMessage && (
+        <AssistantText message={assistantMessage} />
+      )}
     </>
   );
 };

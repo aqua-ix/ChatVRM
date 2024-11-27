@@ -98,7 +98,7 @@ export default function Home() {
           role: "system",
           content: systemPrompt,
         },
-        ...messageLog.slice(-2),
+        ...messageLog,
       ];
 
       const stream = await getChatResponseStream(messages, openAiKey).catch(
@@ -174,7 +174,7 @@ export default function Home() {
 
       // アシスタントの返答をログに追加
       const messageLogAssistant: Message[] = [
-        ...messageLog,
+        ...messageLog.slice(-2),
         { role: "assistant", content: aiTextLog },
       ];
 
