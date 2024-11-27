@@ -13,6 +13,7 @@ import { KoeiroParam, DEFAULT_PARAM } from "@/features/constants/koeiroParam";
 import { getChatResponseStream } from "@/features/chat/openAiChat";
 import { Menu } from "@/components/menu";
 import { Meta } from "@/components/meta";
+import { on } from "events";
 
 export default function Home() {
   const { viewer } = useContext(ViewerContext);
@@ -157,9 +158,10 @@ export default function Home() {
 
             // 文ごとに音声を生成 & 再生、返答を表示
             const currentAssistantMessage = sentences.join(" ");
-            handleSpeakAi(aiTalks[0], () => {
-              setAssistantMessage(currentAssistantMessage);
-            });
+            setAssistantMessage(currentAssistantMessage);
+            // handleSpeakAi(aiTalks[0], () => {
+            //   setAssistantMessage(currentAssistantMessage);
+            // });
           }
         }
       } catch (e) {
