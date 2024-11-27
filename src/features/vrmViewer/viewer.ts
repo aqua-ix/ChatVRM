@@ -101,6 +101,11 @@ export class Viewer {
       this._renderer.domElement
     );
     this._cameraControls.screenSpacePanning = true;
+
+    // Disable rotation and pan controls
+    this._cameraControls.enableRotate = false;
+    this._cameraControls.enablePan = false;
+
     this._cameraControls.update();
 
     window.addEventListener("resize", () => {
