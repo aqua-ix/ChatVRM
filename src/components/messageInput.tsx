@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { IconButton } from "./iconButton";
 
 type Props = {
@@ -18,6 +19,11 @@ export const MessageInput = ({
   onClickMicButton,
   onClickSendButton,
 }: Props) => {
+  const [isCollapsed, setIsCollapsed] = useState(true);
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
   return (
     <div className="absolute bottom-0 z-20 w-screen">
       <div className="bg-base text-black">
@@ -49,7 +55,29 @@ export const MessageInput = ({
           </div>
         </div>
         <div className="py-4 bg-[#413D43] text-center text-white font-Montserrat">
-          Powered by GPT-3.5
+          {isCollapsed ? (
+            <>
+              Powered by GPT-3.5.&nbsp;
+              <button onClick={toggleCollapse} className="ml-2 text-blue-500">
+                More
+              </button>
+            </>
+          ) : (
+            <>
+              Powered by GPT-3.5. Hatsune Miku, © Crypton Future Media, Inc.
+              2007, licensed under a{" "}
+              <a
+                href="https://creativecommons.org/licenses/by-nc/3.0/"
+                className="text-blue-500 underline"
+              >
+                CC BY-NC
+              </a>
+              .&nbsp;
+              <button onClick={toggleCollapse} className="ml-2 text-blue-500">
+                Close
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>
