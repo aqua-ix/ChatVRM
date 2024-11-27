@@ -37,7 +37,8 @@ export class LipSync {
     const bufferSource = this.audio.createBufferSource();
     bufferSource.buffer = audioBuffer;
 
-    bufferSource.connect(this.audio.destination);
+    // Workaround: 音声を出さずにリップシンクのみ動作させる
+    // bufferSource.connect(this.audio.destination);
     bufferSource.connect(this.analyser);
     bufferSource.start();
     if (onEnded) {

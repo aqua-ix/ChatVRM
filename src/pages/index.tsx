@@ -165,11 +165,9 @@ export default function Home() {
 
             // 文ごとに音声を生成 & 再生、返答を表示
             const currentAssistantMessage = sentences.join(" ");
-            setAssistantMessage(currentAssistantMessage);
-            viewer.model?.emoteController?.playEmotion(aiTalks[0].expression);
-            // handleSpeakAi(aiTalks[0], () => {
-            //   setAssistantMessage(currentAssistantMessage);
-            // });
+            handleSpeakAi(aiTalks[0], () => {
+              setAssistantMessage(currentAssistantMessage);
+            });
           }
         }
       } catch (e) {
