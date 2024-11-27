@@ -98,7 +98,7 @@ export default function Home() {
           role: "system",
           content: systemPrompt,
         },
-        ...messageLog,
+        ...messageLog.slice(-2),
       ];
 
       const stream = await getChatResponseStream(messages, openAiKey).catch(
