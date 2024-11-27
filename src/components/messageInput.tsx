@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IconButton } from "./iconButton";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 type Props = {
   language: "ja" | "en";
@@ -61,28 +62,28 @@ export const MessageInput = ({
           </div>
         </div>
         <div className="py-4 bg-[#413D43] text-center text-white font-Montserrat">
-          {isCollapsed ? (
-            <>
-              Powered by GPT-3.5.&nbsp;
-              <button onClick={toggleCollapse} className="ml-2 text-blue-500">
-                More
-              </button>
-            </>
-          ) : (
-            <>
-              Powered by GPT-3.5. Hatsune Miku, © Crypton Future Media, Inc.
-              2007, licensed under a{" "}
+          Powered by GPT-3.5. &nbsp;
+          <button
+            onClick={toggleCollapse}
+            className="inline-flex items-center ml-2 px-3 py-1 rounded-full bg-[#555155] hover:bg-[#656165] transition-colors duration-200"
+          >
+            <span className="ml-4 mr-1">{isCollapsed ? "More" : "Close"}</span>
+            {isCollapsed ? (
+              <ChevronDown className="w-24 h-24" />
+            ) : (
+              <ChevronUp className="w-24 h-24" />
+            )}
+          </button>
+          {!isCollapsed && (
+            <div className="mt-2">
+              Hatsune Miku, © Crypton Future Media, Inc. 2007, licensed under a{" "}
               <a
                 href="https://creativecommons.org/licenses/by-nc/3.0/"
-                className="text-blue-500 underline"
+                className="text-blue-400 hover:text-blue-300 underline transition-colors duration-200"
               >
-                CC BY-NC
+                CC BY-NC.
               </a>
-              .&nbsp;
-              <button onClick={toggleCollapse} className="ml-2 text-blue-500">
-                Close
-              </button>
-            </>
+            </div>
           )}
         </div>
       </div>
