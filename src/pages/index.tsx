@@ -26,6 +26,16 @@ export default function Home() {
   const [chatProcessing, setChatProcessing] = useState(false);
   const [chatLog, setChatLog] = useState<Message[]>([]);
   const [assistantMessage, setAssistantMessage] = useState("");
+  const [language, setLanguage] = useState<"ja" | "en">("ja");
+
+  useEffect(() => {
+    const language = navigator.language || "ja";
+    if (language.startsWith("ja")) {
+      setLanguage("ja");
+    } else {
+      setLanguage("en");
+    }
+  }, []);
 
   useEffect(() => {
     if (window.localStorage.getItem("chatVRMParams")) {
@@ -38,10 +48,7 @@ export default function Home() {
 
   useEffect(() => {
     process.nextTick(() =>
-      window.localStorage.setItem(
-        "chatVRMParams",
-        JSON.stringify({ chatLog })
-      )
+      window.localStorage.setItem("chatVRMParams", JSON.stringify({ chatLog }))
     );
   }, [chatLog]);
 
@@ -189,10 +196,12 @@ export default function Home() {
       <Meta />
       <VrmViewer />
       <MessageInputContainer
+        language={language}
         isChatProcessing={chatProcessing}
         onChatProcessStart={handleSendChat}
       />
       <Menu
+        language={language}
         openAiKey={openAiKey}
         systemPrompt={systemPrompt}
         chatLog={chatLog}

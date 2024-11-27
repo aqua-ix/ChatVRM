@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IconButton } from "./iconButton";
 
 type Props = {
+  language: "ja" | "en";
   userMessage: string;
   isMicRecording: boolean;
   isChatProcessing: boolean;
@@ -12,6 +13,7 @@ type Props = {
   onClickMicButton: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 export const MessageInput = ({
+  language,
   userMessage,
   isMicRecording,
   isChatProcessing,
@@ -38,7 +40,11 @@ export const MessageInput = ({
             />
             <input
               type="text"
-              placeholder="Message..."
+              placeholder={
+                language == "ja"
+                  ? "聞きたいことをいれてね"
+                  : "Type your message"
+              }
               onChange={onChangeUserMessage}
               disabled={isChatProcessing}
               className="bg-surface1 hover:bg-surface1-hover focus:bg-surface1 disabled:bg-surface1-disabled disabled:text-primary-disabled rounded-16 w-full px-16 text-text-primary typography-16 font-bold disabled"
