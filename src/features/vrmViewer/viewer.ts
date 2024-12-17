@@ -104,7 +104,6 @@ export class Viewer {
 
     // Disable rotation and pan controls
     this._cameraControls.enableRotate = false;
-    this._cameraControls.enablePan = false;
 
     this._cameraControls.update();
 
