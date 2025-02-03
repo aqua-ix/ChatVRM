@@ -165,17 +165,9 @@ export default function Home() {
 
             // 文ごとに音声を生成 & 再生、返答を表示
             const currentAssistantMessage = sentences.join(" ");
-            if (language === "ja") {
-              handleSpeakAi(aiTalks[0], () => {
-                setAssistantMessage(currentAssistantMessage);
-              });
-            } else {
-              // Workaround: 日本語以外の場合は音声を再生せずに表情の切り替えだけ行う
-              viewer?.model?.emoteController?.playEmotion(
-                aiTalks[0].expression
-              );
-              setAssistantMessage(currentAssistantMessage);
-            }
+            // Workaround: 音声を再生せずに表情の切り替えだけ行う
+            viewer?.model?.emoteController?.playEmotion(aiTalks[0].expression);
+            setAssistantMessage(currentAssistantMessage);
           }
         }
       } catch (e) {
