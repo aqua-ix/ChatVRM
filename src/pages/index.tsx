@@ -168,6 +168,9 @@ export default function Home() {
             // Workaround: 音声を再生せずに表情の切り替えだけ行う
             viewer?.model?.emoteController?.playEmotion(aiTalks[0].expression);
             setAssistantMessage(currentAssistantMessage);
+
+            // Workaround: 2秒待ってから次の文を再生
+            await new Promise((resolve) => setTimeout(resolve, 2000));
           }
         }
       } catch (e) {
