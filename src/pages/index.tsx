@@ -18,8 +18,9 @@ export default function Home() {
   const { viewer } = useContext(ViewerContext);
 
   const [systemPrompt, setSystemPrompt] = useState(SYSTEM_PROMPT);
-  const [openAiKey, setOpenAiKey] = useState(process.env.openAiKey || "");
-  const [voicevoxKey, setVoicevoxKey] = useState(process.env.voicevoxKey || "");
+  // Secrets are no longer embedded at build time; start empty. (User can still input manually if UI exposes it.)
+  const [openAiKey, setOpenAiKey] = useState("");
+  const [voicevoxKey, setVoicevoxKey] = useState("");
   const [koeiromapKey, setKoeiromapKey] = useState("");
   const [koeiroParam, setKoeiroParam] = useState<KoeiroParam>(DEFAULT_PARAM);
   const [chatProcessing, setChatProcessing] = useState(false);
@@ -74,11 +75,6 @@ export default function Home() {
    */
   const handleSendChat = useCallback(
     async (text: string) => {
-      if (!openAiKey) {
-        setAssistantMessage("APIキーが入力されていません");
-        return;
-      }
-
       const newMessage = text;
 
       if (newMessage == null) return;

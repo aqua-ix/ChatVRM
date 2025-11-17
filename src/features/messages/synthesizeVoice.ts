@@ -12,26 +12,21 @@ export async function synthesizeVoice(
   return { audio: koeiroRes.audio };
 }
 
-export async function synthesizeVoicevox(
-  message: string,
-  apiKey: string,
-) {
-  const endpointUrl = "https://deprecatedapis.tts.quest/v2/voicevox/audio/";
-
-  const query_params = {
-    key: apiKey,
-    text: message,
-    speaker: "3",
-  }
-
-  const query = new URLSearchParams(query_params);
-
-  const voicevoxResponse = await fetch(
-    `${endpointUrl}?${query}`,
-    { method: "POST" },
-  );
-
-  return { audio: await voicevoxResponse.blob() };
+export async function synthesizeVoicevox(message: string) {
+  // Server-side secret usage: hit internal API route which proxies Voicevox.
+  const res = await fetch("/api/voicevox", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message }),
+  });
+  const data = await res.json();
+  const base64: string = data.audio;
+  // Convert base64 to Blob
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  const blob = new Blob([bytes.buffer], { type: "audio/wav" });
+  return { audio: blob };
 }
 
 export async function synthesizeVoiceApi(

@@ -12,7 +12,8 @@ const createSpeakCharacter = () => {
   return (
     screenplay: Screenplay,
     viewer: Viewer,
-    voicevoxApiKey: string,
+    // voicevoxApiKey kept for backward compatibility but ignored (server secret now)
+    _voicevoxApiKey: string,
     onStart?: () => void,
     onComplete?: () => void
   ) => {
@@ -22,7 +23,7 @@ const createSpeakCharacter = () => {
         await wait(1000 - (now - lastTime));
       }
 
-      const buffer = await fetchAudio(screenplay.talk, voicevoxApiKey).catch(
+      const buffer = await fetchAudio(screenplay.talk).catch(
         () => null
       );
       lastTime = Date.now();
@@ -48,13 +49,9 @@ const createSpeakCharacter = () => {
 export const speakCharacter = createSpeakCharacter();
 
 export const fetchAudio = async (
-  talk: Talk,
-  apiKey: string
+  talk: Talk
 ): Promise<ArrayBuffer> => {
-  const ttsVoice = await synthesizeVoicevox(
-    talk.message,
-    apiKey
-  );
+  const ttsVoice = await synthesizeVoicevox(talk.message);
   const buffer = (await ttsVoice.audio).arrayBuffer();
     if (buffer == null) {
       throw new Error("Something went wrong");

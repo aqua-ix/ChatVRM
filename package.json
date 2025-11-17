@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next build && next start",
-    "export": "next export",
-    "lint": "next lint"
+  "dev": "npm run pages:dev",
+  "build": "next build",
+  "start": "next build && next start",
+  "export": "next build && next export",
+  "pages:dev": "npm run export && npx wrangler pages dev ./out",
+  "lint": "next lint"
   },
   "dependencies": {
     "@charcoal-ui/icons": "^2.6.0",

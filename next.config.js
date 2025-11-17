@@ -9,8 +9,7 @@ const nextConfig = {
   },
   optimizeFonts: false,
   env: {
-    openAiKey: process.env.OPENAI_KEY,
-    voicevoxKey: process.env.VOICEVOX_KEY,
+    // Removed openAiKey / voicevoxKey exposure to avoid embedding secrets in client bundle.
   },
 };
 

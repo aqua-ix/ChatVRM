@@ -19,12 +19,15 @@
 
 ### 環境変数の設定
 
-OpenAI APIおよびWEB版VOICEVOXのAPIキーを取得し、環境変数として設定してください。
+OpenAI APIおよびWEB版VOICEVOXのAPIキーを取得し、`.dev.vars` ファイルを作成して設定してください。
 
 ```bash
-export OPENAI_KEY="your_openai_api_key"
-export VOICEVOX_KEY="your_voicevox_api_key"
+# .dev.vars
+OPENAI_KEY=your_openai_api_key
+VOICEVOX_KEY=your_voicevox_api_key
 ```
+
+`wrangler pages dev` は自動的に `.dev.vars` を読み込みます。
 
 ### 実行手順
 
@@ -34,12 +37,27 @@ export VOICEVOX_KEY="your_voicevox_api_key"
 npm install
 ```
 
-パッケージのインストールが完了した後、以下のコマンドで開発用のWebサーバーを起動します。
+パッケージのインストールが完了した後、以下のコマンドで開発サーバーを起動します。
 
 ```bash
 npm run dev
 ```
 
-実行後、以下のURLにアクセスして動作を確認して下さい。
+内部で `next build && next export` を行い、`out/` を wrangler で提供します。`functions/` 以下の API エンドポイント (例: `/api/chatStream`, `/api/voicevox`) が利用可能になります。
 
-[http://localhost:3000](http://localhost:3000)
+アクセスURL: <http://localhost:8788>
+
+**注意**: HMR (Hot Module Replacement) は動作しないため、フロントエンドのコード変更後は `Ctrl+C` で停止して再度 `npm run dev` を実行してください。
+
+### Cloudflare Pages 本番デプロイ
+
+1. ダッシュボードで `OPENAI_KEY`, `VOICEVOX_KEY` を Secrets として登録
+2. `git push` で自動ビルド
+3. Pages が静的アセット(`out/`)と Functions(`functions/`) を同時に配信
+
+### 備考
+
+- 開発・本番環境ともに Cloudflare Pages Functions (`functions/`) でAPI を提供
+- `src/pages/api/*` は使用していません
+- `.dev.vars` はローカル開発専用（Git には含めないこと）
+- 本番では Cloudflare ダッシュボードの Environment variables で Secrets を設定
