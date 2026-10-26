@@ -62,7 +62,7 @@ export const MessageInput = ({
           </div>
         </div>
         <div className="py-4 bg-[#413D43] text-center text-white font-Montserrat">
-          Powered by GPT-3.5. &nbsp;
+          Powered by GPT-4o mini. &nbsp;
           <button
             onClick={toggleCollapse}
             className="inline-flex items-center ml-2 px-3 py-1 rounded-full bg-[#555155] hover:bg-[#656165] transition-colors duration-200"
